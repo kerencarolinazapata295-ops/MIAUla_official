@@ -13,7 +13,9 @@ def pedir_opcion():
             print(f"Su opcion es {opcion}")
             return opcion
         except:
+            print(" ")
             print("La opcion debe de ser un numero")
+            print(" ")
 
 #Evaluamos y mandamos a llamar a la funcion dependiendo de la opcion elegida
 while True:

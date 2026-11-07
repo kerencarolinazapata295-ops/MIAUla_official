@@ -1,8 +1,7 @@
 def registro():
-    import json,os
-    from Menu_de_MIAUla import limpiar
+    import json
     from MIAUla_inicio_de_sesion import iniciar_sesion
-    from MIAUla_funciones_principales import obtener_ruta
+    from MIAUla_funciones_principales import obtener_ruta, limpiar
 
     print("Bienvenido al registro de nuevos usuarios de MIAUla")
     print("____________________________________________________")

@@ -52,16 +52,20 @@ while True:
             print("-"*30)
     if opcion==1:
 
-        codigo_temporal=input("Ingresa codigo temporal: ")
+        codigo_temporal=input("Ingresa codigo temporal: ").upper()
         if codigo_temporal in base:
             print("Usuario encontrado con exito ✅")
             print("_"*30)
             
             print("Quieres aceptar o rechazar a este usuario")
+            print(" ")
             while True:
+                print(" ")
                 desicion=input("Elige una opcion, ACEPTAR ||O|| RECHAZAR: ").upper()
                 print("_"*30)
+                print(" ")
                 print(f"Tu opcion elegida fue: {desicion}")
+                print(" ")
                 if desicion in ("ACEPTAR", "RECHAZAR"):
                     break
                 else:
@@ -86,9 +90,28 @@ while True:
                 guardar_docentes_pendientes()
 
             if desicion=="RECHAZAR":
-                del base[codigo_temporal]
-                guardar()
-                print("Usuario eliminado con exito ✅")
+                valor=base.get(codigo_temporal)
+                print("-"*100)
+                print("_"*20)
+                print(f"\nCodigo temporal de docente: {codigo_temporal}")
+                print("_"*20)
+                print(f"\n Nombre: {valor[0]}")
+                print(f"\n Universidad: {valor[1]}")
+                print(f"\n Correo electronico: {valor[2]}")
+                print(" ") 
+                while True:
+                    pregunta=input("\nDeseas rechazar a este usuario?\n\nResponde si o no:  ").lower()
+                    if pregunta=="si":
+                        del base[codigo_temporal]
+                        guardar()
+                        print("Usuario eliminado con exito ✅")
+                        break
+                    elif pregunta=="no":
+                        print(" ")
+                        print("Tu respuesta fue no \n")
+                        break
+                    else:
+                        print("\nSolo existen 2 opciones (si o no). Intenta de nuevo")
         else:
             print("Este codigo no existe")
 
@@ -98,8 +121,9 @@ while True:
             print("_"*20)
             print(f"\nCodigo temporal de docente: {codigo_de_docente}")
             print("_"*20)
-            for valor in ficha:
-                print(f"\n {valor}")
+            print(f"\n Nombre: {ficha[0]}")
+            print(f"\n Universidad: {ficha[1]}")
+            print(f"\n Correo electronico: {ficha[2]}")
     elif opcion==3:
         break
 

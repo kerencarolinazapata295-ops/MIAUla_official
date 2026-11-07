@@ -2,6 +2,7 @@ def cambiar_contraseña():
     import json
     from MIAUla_docentes_inicio_de_sesion import iniciar_sesion
     from MIAUla_docente_funciones_principales import obtener_ruta
+    from MIAUla_aulas import generar_codigo
 
     ruta_json=obtener_ruta("MIAUla_docentes.json")
     #Abrimos el json
@@ -17,40 +18,29 @@ def cambiar_contraseña():
             json.dump(datos,file, indent=8, ensure_ascii=False)
 
     while True:
-        codigo_de_docente=input("Ingresa codigo de docente: ")
+        codigo_de_docente=input("Ingresa codigo de docente: ").upper().strip()
         print("_________________")
         encontrado=False
         if codigo_de_docente in datos:
-            while True:
-                contraseña=input("Ingresa contraseña: ")
-                print("_______________")
-
-                if contraseña == datos[codigo_de_docente][3]:
-                    print("Contraseña correcta")
-                    encontrado=True
-                    
-                    while True:
-                        print(f"Bienvenido {datos[codigo_de_docente][0]}")
-                        print("_______________________________")
-
-                        nueva_contraseña=input("Ingresa nueva contraseña: ")
-                        confirmacion_de_nueva_contraseña=input("Vuelve a introducir tu nueva contraseña: ")
-
-                        if confirmacion_de_nueva_contraseña==nueva_contraseña:
-                            print("Contraseña cambiada con exito")
-                            print("_____________________________")
-                            print("Ya puedes iniciar sesion")
-                            print(" ")
-
-                            datos[codigo_de_docente][3]=nueva_contraseña
-                            guardar()
-                            iniciar_sesion()
-                            break
-                        else:
-                            print("Contraseñas no conciden. Intenta de nuevo")
-                            print("_________________________________________")
+            encontrado=True
+            posicion=datos.get(codigo_de_docente)
+            correo=input("Ingresa correo electronico: ")
+            if correo == posicion[2]:
+                codigo_generado=generar_codigo()
+                print(f"\ncodigo generado: {codigo_generado}")
+                ingresa_codigo=input(f"\nIngresa el codigo enviado al correo electronico: {correo}: ").upper()
+                if ingresa_codigo==codigo_generado:
+                    print("\nCodigo correcto")
+                    nueva_contraseña=input("\nIngresa tu nueva contraseña: ")
+                    confirmar_contraseña=input("\nIngresa nuevamente tu contraseña: ")
+                    if nueva_contraseña==confirmar_contraseña:
+                        datos[codigo_de_docente][3]=confirmar_contraseña
+                        print("\nTu contraseña ha sido cambiada con exito ✅")
+                        guardar()
+                        break
+                    else:
+                        print("\nContraseñas no coinciden. Intentalo de nuevo")
                 else:
-                    print("Contraseña incorrecta. Intenta otra vez")
-                    print("_______________________________________")
+                    print("Codigo incorrecto revisa tu correo")
         if not encontrado:
-            print(f"Usuario: {codigo_de_docente} no esta registrado")
+            print("Este usuario no fue encontrado")

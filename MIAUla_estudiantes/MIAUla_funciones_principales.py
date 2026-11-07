@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+
 CARPETAS_AULAS=Path(__file__).resolve().parent.parent /"MIAUla_aulas"
 
 
@@ -14,8 +15,6 @@ def validar_aula(codigo_aula):
     codigo_aula = codigo_aula.strip().upper()
 
     archivo = CARPETAS_AULAS / f"aula_{codigo_aula}.json"
-    print("Carpeta que está buscando:", CARPETAS_AULAS)
-    print("Archivo que está buscando:", archivo)
 
     if not archivo.is_file():
         print("___________________")
@@ -241,3 +240,44 @@ def mostrar_todas_las_tareas():
         print(f"Título: {tarea.get('titulo', 'Sin título')}")
         print(f"Descripción: {tarea.get('descripcion', 'Sin descripción')}")
         print("--------------------------------------")
+
+def generar_codigo():
+    import string,secrets
+    caracteres = string.ascii_uppercase + string.digits
+
+    while True:
+        codigo = "".join(
+            secrets.choice(caracteres)
+            for _ in range(6)
+        )
+        return codigo
+
+def menu():
+    print("1. Iniciar sesion")
+    print("2. Cambiar contraseña")
+    print("3. Registrarte")
+    print("4. Salir")
+
+def menu_de_inicio():
+    print(" ")
+    print("__________Pagina principal__________")
+    print(" ")
+    print("1. Entregar tareas")
+    print("2. Buscar tarea")
+    print("3. Inscribirse a una aula")
+    print("4. Mi perfil")
+    print("5. Todas las tareas")
+    print("6. Cerrar sesion")
+
+def limpiar(x):
+    return " ".join ((x).strip().lower().split()).title()
+
+def pedir_opcion():
+    while True:
+        try:
+            opcion=int(input("Ingresa la opcion: "))
+            print(f"Su opcion es {opcion}")
+            return opcion
+        except:
+            print("\nLa opcion debe de ser un numero")
+            print(" ")

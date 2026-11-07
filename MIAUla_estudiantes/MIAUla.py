@@ -1,10 +1,10 @@
 #Importamos nuestros modulos
-from Menu_de_MIAUla import menu,pedir_opcion
 from MIAUla_inicio_de_sesion import iniciar_sesion
 from MIAUla_cambiar_contraseña import cambiar_contraseña
 from MIAUla_registro import registro
+from MIAUla_funciones_principales import pedir_opcion, menu
 
-print("__________________________________________________________________")
+
 print("Bienvenido a MIAUla ¡Tu camino academico!")
 
 
@@ -30,4 +30,5 @@ while True:
     if opcion==4:
         break
     if opcion not in (1,2,3,4):
-        print("Solo existen 4 opciones. Intenta de nuevo")
+        print("\nSolo existen 4 opciones. Intenta de nuevo")
+        print(" ")

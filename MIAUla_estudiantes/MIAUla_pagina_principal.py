@@ -1,7 +1,6 @@
 def pagina_principal(usuario):
-        from MIAUla_funciones_principales import inscribir_estudiante, entregar_tarea, buscar_tarea_por_id, mostrar_perfil, obtener_ruta, mostrar_todas_las_tareas
+        from MIAUla_funciones_principales import inscribir_estudiante, entregar_tarea, buscar_tarea_por_id, mostrar_perfil, obtener_ruta, mostrar_todas_las_tareas, menu_de_inicio, pedir_opcion
         import json
-        from Menu_de_MIAUla import menu_de_inicio, pedir_opcion
 
         ruta_json=obtener_ruta("MIAUla.json")
         try:
